@@ -3,7 +3,7 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 
-describe('backend-express-template routes', () => {
+describe('rangers routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
@@ -58,8 +58,8 @@ describe('backend-express-template routes', () => {
     const newRanger = {
       firstName: 'Olbric',
       lastName: 'Cucurbitaceae',
-      gender: 'genderqueer',
-      companion: 'hedgehog',
+      gender: 'Genderfluid',
+      companion: 'Hedgehog',
     };
     const resp = await request(app).post('/rangers').send(newRanger);
     expect(resp.status).toBe(200);
@@ -70,8 +70,11 @@ describe('backend-express-template routes', () => {
   });
 
   test('PUT /rangers/:id should update an existing ranger', async () => {
-    const resp = await request(app).put('/rangers/1').send();
+    const resp = await request(app).put('/rangers/1').send({
+      gender: 'Male',
+    });
     expect(resp.status).toBe(200);
+    expect(resp.body.gender).toBe('Male');
   });
 
   afterAll(() => {
