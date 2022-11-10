@@ -42,7 +42,7 @@ describe('backend-express-template routes', () => {
     `);
   });
 
-  test('GET /rangers/1 should return details on a specific ranger', async () => {
+  test('GET /rangers/:id should return details on a specific ranger', async () => {
     const resp = await request(app).get('/rangers/1');
     expect(resp.status).toBe(200);
     expect(resp.body).toEqual({
@@ -67,6 +67,11 @@ describe('backend-express-template routes', () => {
       id: expect.any(String),
       ...newRanger,
     });
+  });
+
+  test('PUT /rangers/:id should update an existing ranger', async () => {
+    const resp = await request(app).put('/rangers/1').send();
+    expect(resp.status).toBe(200);
   });
 
   afterAll(() => {
