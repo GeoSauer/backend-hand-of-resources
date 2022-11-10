@@ -14,29 +14,29 @@ describe('backend-express-template routes', () => {
     expect(resp.body).toMatchInlineSnapshot(`
       Array [
         Object {
-          "first_name": "Liv",
+          "firstName": "Liv",
           "id": "1",
-          "last_name": "Onagraceae",
+          "lastName": "Onagraceae",
         },
         Object {
-          "first_name": "Joshia",
+          "firstName": "Joshia",
           "id": "2",
-          "last_name": "Solanaceae",
+          "lastName": "Solanaceae",
         },
         Object {
-          "first_name": "Elfie",
+          "firstName": "Elfie",
           "id": "3",
-          "last_name": "Lichinaceae",
+          "lastName": "Lichinaceae",
         },
         Object {
-          "first_name": "Margy",
+          "firstName": "Margy",
           "id": "4",
-          "last_name": "Hydrocharitaceae",
+          "lastName": "Hydrocharitaceae",
         },
         Object {
-          "first_name": "Ted",
+          "firstName": "Ted",
           "id": "5",
-          "last_name": "Solanaceae",
+          "lastName": "Solanaceae",
         },
       ]
     `);
@@ -47,11 +47,16 @@ describe('backend-express-template routes', () => {
     expect(resp.status).toBe(200);
     expect(resp.body).toEqual({
       id: '1',
-      first_name: 'Liv',
-      last_name: 'Onagraceae',
+      firstName: 'Liv',
+      lastName: 'Onagraceae',
       gender: 'Female',
       companion: 'Roseat flamingo',
     });
+  });
+
+  test('POST /rangers should create a new ranger', async () => {
+    const resp = await request(app).post('/rangers').send();
+    expect(resp.status).toBe(200);
   });
 
   afterAll(() => {
