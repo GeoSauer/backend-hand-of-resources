@@ -55,8 +55,18 @@ describe('backend-express-template routes', () => {
   });
 
   test('POST /rangers should create a new ranger', async () => {
-    const resp = await request(app).post('/rangers').send();
+    const newRanger = {
+      firstName: 'Olbric',
+      lastName: 'Cucurbitaceae',
+      gender: 'genderqueer',
+      companion: 'hedgehog',
+    };
+    const resp = await request(app).post('/rangers').send(newRanger);
     expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: expect.any(String),
+      ...newRanger,
+    });
   });
 
   afterAll(() => {
