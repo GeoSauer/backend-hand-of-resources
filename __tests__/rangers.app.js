@@ -42,6 +42,18 @@ describe('backend-express-template routes', () => {
     `);
   });
 
+  test('GET /rangers/1 should return details on a specific ranger', async () => {
+    const resp = await request(app).get('/rangers/1');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: '1',
+      first_name: 'Liv',
+      last_name: 'Onagraceae',
+      gender: 'Female',
+      companion: 'Roseat flamingo',
+    });
+  });
+
   afterAll(() => {
     pool.end();
   });
