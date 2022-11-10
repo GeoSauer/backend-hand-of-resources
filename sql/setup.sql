@@ -13,7 +13,7 @@ CREATE TABLE rangers (
 	first_name VARCHAR(50),
 	last_name VARCHAR(50),
 	gender VARCHAR(50),
-	familiar VARCHAR(50)
+	companion VARCHAR(50)
     );
 
 CREATE TABLE druids (
@@ -51,7 +51,7 @@ INSERT INTO rangers (
     first_name, 
     last_name, 
     gender, 
-    familiar
+    companion
 )
 VALUES 
 ('Liv', 'Onagraceae', 'Female', 'Roseat flamingo'),
