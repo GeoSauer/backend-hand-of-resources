@@ -42,6 +42,19 @@ describe('druid routes', () => {
     `);
   });
 
+  test('GET /druids/:id should return details on a specific druid', async () => {
+    const resp = await request(app).get('/druids/1');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "firstName": "Melanelia Lichen",
+        "gender": "Male",
+        "id": "1",
+        "lastName": "Parmeliaceae",
+      }
+    `);
+  });
+
   afterAll(() => {
     pool.end();
   });
