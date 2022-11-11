@@ -80,8 +80,8 @@ describe('rangers routes', () => {
   test('DELETE /rangers/:id should delete a ranger', async () => {
     const resp = await request(app).delete('/rangers/1');
     expect(resp.status).toBe(200);
-    const rangerResponse = await request(app).get('/rangers/1');
-    expect(rangerResponse.status).toBe(404);
+    const rangerResp = await request(app).get('/rangers/1');
+    expect(rangerResp.status).toBe(404);
   });
 
   afterAll(() => {
