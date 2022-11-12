@@ -72,6 +72,27 @@ describe('druid routes', () => {
       }
     `);
   });
+
+  test('PUT /druids/:id should update an existing druid', async () => {
+    const resp = await request(app).put('/druids/1').send({
+      firstName: 'Bobby',
+    });
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "firstName": "Bobby",
+        "gender": "Male",
+        "id": "1",
+        "lastName": "Parmeliaceae",
+      }
+    `);
+  });
+
+  //   test('DELETE /druids/:id should delete a druid', async () => {
+  //     const resp = await request(app).delete('/druids/1');
+  //     expect(resp.status).toBe(200);
+  //   });
+
   afterAll(() => {
     pool.end();
   });
