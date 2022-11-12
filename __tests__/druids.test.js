@@ -3,7 +3,7 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 
-describe('druid routes', () => {
+describe.skip('druid routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
@@ -88,10 +88,12 @@ describe('druid routes', () => {
     `);
   });
 
-  //   test('DELETE /druids/:id should delete a druid', async () => {
-  //     const resp = await request(app).delete('/druids/1');
-  //     expect(resp.status).toBe(200);
-  //   });
+  test('DELETE /druids/:id should delete a druid', async () => {
+    const resp = await request(app).delete('/druids/1');
+    expect(resp.status).toBe(200);
+    const druidResp = await request(app).get('/druids/1');
+    expect(druidResp.status).toBe(404);
+  });
 
   afterAll(() => {
     pool.end();
