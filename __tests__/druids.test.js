@@ -55,6 +55,23 @@ describe('druid routes', () => {
     `);
   });
 
+  test('POST /druids should create a new druid', async () => {
+    const newDruid = {
+      firstName: 'Hunter',
+      lastName: 'Hunter',
+      gender: 'Male',
+    };
+    const resp = await request(app).post('/druids').send(newDruid);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "firstName": "Hunter",
+        "gender": "Male",
+        "id": "6",
+        "lastName": "Hunter",
+      }
+    `);
+  });
   afterAll(() => {
     pool.end();
   });
