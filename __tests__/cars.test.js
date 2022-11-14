@@ -92,6 +92,13 @@ describe('cars routes', () => {
     `);
   });
 
+  test.only('DELETE /cars/:id should delete a car', async () => {
+    const resp = await request(app).delete('/cars/1');
+    expect(resp.status).toBe(200);
+    const carResp = await request(app).get('/cars/1');
+    expect(carResp.status).toBe(404);
+  });
+
   afterAll(() => {
     pool.end();
   });
