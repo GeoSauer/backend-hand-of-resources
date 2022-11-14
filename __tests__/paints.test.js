@@ -49,6 +49,24 @@ describe('paints routes', () => {
       }
     `);
   });
+
+  test('POST /paints should create a new paint', async () => {
+    const newPaint = {
+      hex: '#CCCCFF',
+      looksLike: 'Periwinkle',
+      smellsLike: 'Teen Spirit',
+    };
+    const resp = await request(app).post('/paints').send(newPaint);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "hex": "#CCCCFF",
+        "id": "6",
+        "looksLike": "Periwinkle",
+        "smellsLike": "Teen Spirit",
+      }
+    `);
+  });
   afterAll(() => {
     pool.end();
   });
