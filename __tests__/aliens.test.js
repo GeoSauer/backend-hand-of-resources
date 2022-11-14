@@ -8,36 +8,41 @@ describe('aliens routes', () => {
     return setup(pool);
   });
 
-  test('GET / should return a list of aliens', async () => {
+  test('GET /aliens should return a list of aliens', async () => {
     const resp = await request(app).get('/aliens');
     expect(resp.status).toBe(200);
     expect(resp.body).toMatchInlineSnapshot(`
       Array [
         Object {
           "hostile": "false",
+          "id": "1",
           "name": "Wrapsafe",
         },
         Object {
           "hostile": "true",
+          "id": "2",
           "name": "Tampflex",
         },
         Object {
           "hostile": "true",
+          "id": "3",
           "name": "Sub-Ex",
         },
         Object {
           "hostile": "true",
+          "id": "4",
           "name": "Aerified",
         },
         Object {
           "hostile": "false",
+          "id": "5",
           "name": "Tempsoft",
         },
       ]
     `);
   });
 
-  test('GET /:id should return details on a specific alien', async () => {
+  test('GET /aliens/:id should return details on a specific alien', async () => {
     const resp = await request(app).get('/aliens/1');
     expect(resp.status).toBe(200);
     expect(resp.body).toMatchInlineSnapshot(`
@@ -46,6 +51,24 @@ describe('aliens routes', () => {
         "hostile": "false",
         "id": "1",
         "name": "Wrapsafe",
+      }
+    `);
+  });
+
+  test('POST /aliens should create a new alien', async () => {
+    const newAlien = {
+      name: 'Swiggity',
+      firstContact: '2020-04-20',
+      hostile: 'True',
+    };
+    const resp = await request(app).post('/aliens').send(newAlien);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "firstContact": "2020-04-20T06:00:00.000Z",
+        "hostile": "True",
+        "id": "6",
+        "name": "Swiggity",
       }
     `);
   });
