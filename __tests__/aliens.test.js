@@ -3,7 +3,7 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 
-describe.only('aliens routes', () => {
+describe('aliens routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
@@ -47,7 +47,7 @@ describe.only('aliens routes', () => {
     expect(resp.status).toBe(200);
     expect(resp.body).toMatchInlineSnapshot(`
       Object {
-        "firstContact": "2022-02-02T07:00:00.000Z",
+        "firstContact": "2/2/2022",
         "hostile": "false",
         "id": "1",
         "name": "Wrapsafe",
@@ -58,14 +58,14 @@ describe.only('aliens routes', () => {
   test('POST /aliens should create a new alien', async () => {
     const newAlien = {
       name: 'Swiggity',
-      firstContact: '2020-04-20',
+      firstContact: '4/20/2020',
       hostile: 'True',
     };
     const resp = await request(app).post('/aliens').send(newAlien);
     expect(resp.status).toBe(200);
     expect(resp.body).toMatchInlineSnapshot(`
       Object {
-        "firstContact": "2020-04-20T06:00:00.000Z",
+        "firstContact": "4/20/2020",
         "hostile": "True",
         "id": "6",
         "name": "Swiggity",
@@ -80,7 +80,7 @@ describe.only('aliens routes', () => {
     expect(resp.status).toBe(200);
     expect(resp.body).toMatchInlineSnapshot(`
       Object {
-        "firstContact": "2022-02-02T07:00:00.000Z",
+        "firstContact": "2/2/2022",
         "hostile": "True",
         "id": "1",
         "name": "Wrapsafe",

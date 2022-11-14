@@ -34,7 +34,7 @@ CREATE TABLE cars (
 CREATE TABLE aliens (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	name VARCHAR(50),
-	first_contact DATE,
+	first_contact VARCHAR,
 	hostile VARCHAR(50)
 ); 
 
