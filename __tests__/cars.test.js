@@ -76,6 +76,22 @@ describe('cars routes', () => {
     `);
   });
 
+  test('PUT /cars/:id should update an existing car', async () => {
+    const resp = await request(app).put('/cars/1').send({
+      model: 'Power Wagon 1500',
+    });
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "id": "1",
+        "make": "GMC",
+        "model": "Power Wagon 1500",
+        "vin": "WAUDH48H47K452914",
+        "year": "1992",
+      }
+    `);
+  });
+
   afterAll(() => {
     pool.end();
   });
