@@ -37,6 +37,19 @@ describe('aliens routes', () => {
     `);
   });
 
+  test('GET /:id should return details on a specific alien', async () => {
+    const resp = await request(app).get('/aliens/1');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "firstContact": "2022-02-02T07:00:00.000Z",
+        "hostile": "false",
+        "id": "1",
+        "name": "Wrapsafe",
+      }
+    `);
+  });
+
   afterAll(() => {
     pool.end();
   });
