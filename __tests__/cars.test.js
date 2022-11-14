@@ -56,25 +56,25 @@ describe('cars routes', () => {
     `);
   });
 
-  // test('POST /cars should create new car', async () => {
-  //   const newCar = {
-  //     make: 'Chevrolet',
-  //     model: 'Colorado',
-  //     vin: 'WCUDG42H47K452416',
-  //     year: '2023',
-  //   };
-  //   const resp = await request(app).post('/cars').send(newCar);
-  //   expect(resp.status).toBe(200);
-  //   expect(resp.body).toMatchInlineSnapshot(`
-  //     Object {
-  //       "id": "6",
-  //       "make": "Chevrolet",
-  //       "model": "Colorado",
-  //       "vin": "WCUDG42H47K452416",
-  //       "year": "2023",
-  //     }
-  //   `);
-  // });
+  test('POST /cars should create new car', async () => {
+    const newCar = {
+      make: 'Chevrolet',
+      model: 'Colorado',
+      vin: 'WCUDG42H47K452416',
+      year: '2023',
+    };
+    const resp = await request(app).post('/cars').send(newCar);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "id": "6",
+        "make": "Chevrolet",
+        "model": "Colorado",
+        "vin": "WCUDG42H47K452416",
+        "year": "2023",
+      }
+    `);
+  });
 
   afterAll(() => {
     pool.end();
