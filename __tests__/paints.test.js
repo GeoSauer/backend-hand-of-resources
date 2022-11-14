@@ -67,6 +67,22 @@ describe('paints routes', () => {
       }
     `);
   });
+
+  test('PUT /paints/:id should update an existing paint', async () => {
+    const resp = await request(app).put('/paints/1').send({
+      smellsLike: 'Desperation',
+    });
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "hex": "#df9d1e",
+        "id": "1",
+        "looksLike": "Goldenrod",
+        "smellsLike": "Desperation",
+      }
+    `);
+  });
+
   afterAll(() => {
     pool.end();
   });
