@@ -88,6 +88,13 @@ describe('aliens routes', () => {
     `);
   });
 
+  test('DELETE /aliens/:id should delete an alien', async () => {
+    const resp = await request(app).delete('/aliens/1');
+    expect(resp.status).toBe(200);
+    const alienResp = await request(app).get('/aliens/1');
+    expect(alienResp.status).toBe(404);
+  });
+
   afterAll(() => {
     pool.end();
   });
