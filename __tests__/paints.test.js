@@ -83,6 +83,13 @@ describe('paints routes', () => {
     `);
   });
 
+  test('DELETE /paints/:id should delete a paint', async () => {
+    const resp = await request(app).delete('/paints/1');
+    expect(resp.status).toBe(200);
+    const paintResp = await request(app).get('/paints/1');
+    expect(paintResp.status).toBe(404);
+  });
+
   afterAll(() => {
     pool.end();
   });
