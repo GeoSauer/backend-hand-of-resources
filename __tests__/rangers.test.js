@@ -3,7 +3,7 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 
-describe.skip('rangers routes', () => {
+describe('rangers routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
