@@ -73,6 +73,21 @@ describe('aliens routes', () => {
     `);
   });
 
+  test('PUT /aliens/:id should update an existing alien', async () => {
+    const resp = await request(app).put('/aliens/1').send({
+      hostile: 'True',
+    });
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "firstContact": "2022-02-02T07:00:00.000Z",
+        "hostile": "True",
+        "id": "1",
+        "name": "Wrapsafe",
+      }
+    `);
+  });
+
   afterAll(() => {
     pool.end();
   });
